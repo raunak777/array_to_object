@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div id="showdata1"></div>
+</body>
+<script>
+	var obj={};
+	fetch('https://cors-anywhere.herokuapp.com/'+'https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt')
+	.then(response => response.text())
+	.then(data => {
+		var arr = data.split("\n");
+		for (var i = 1; i < arr.length-1; i++) {
+			var datares= arr[i].split(/[>]+/);
+			if (datares.length==1) {
+				str = datares[0];
+				str = str.split(' - ');
+				obj[str[1]]={};
+				var data=str[1]
+			}
+			else if(datares.length==2){
+				str1= datares[1];
+				obj[data][str1]={};
+				var data1= str1;
+			}
+			else if(datares.length==3)
+			{
+				str2= datares[2];
+				obj[data][data1][str2]={};
+				var data3= str2;
+			}
+			else if(datares.length==4){
+				str3= datares[3];
+				// console.log(str3);
+				obj[data][data1][data3][str3]={};
+				var data4= str3;
+			}
+			else if(datares.length==5){
+				str4= datares[4];
+				// console.log(str3);
+				obj[data][data1][data3][data4][str4]={};
+				var data5= str4;
+			}
+			else if(datares.length==6){
+				str5= datares[5];
+				// console.log(str3);
+				obj[data][data1][data3][data4][data5][str5]={};
+				var data6= str5;
+			}
+			
+		}
+		
+		console.log(obj);
+	})
+	
+</script>
+</html>
